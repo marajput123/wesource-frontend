@@ -1,6 +1,27 @@
-# Getting Started with Create React App
+# WeSource Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Section 1 - Enviornment Setup
+
+### 1. Creating the directories
+
+```shell
+> mkdir capstone
+> cd capstone
+```
+
+### 2. Cloning the Git Repo
+```shell
+# inside the ./capstone directory
+> git init
+> git clone https://github.com/marajput123/wesource-frontend.git
+```
+
+### 3. Installing dependencies
+```shell
+> cd wesource-frontend
+# inside the ./capstone/wesource-frontend
+> npm install
+```
 
 ## Available Scripts
 
