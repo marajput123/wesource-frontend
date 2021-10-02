@@ -9,6 +9,7 @@ const LandingPage = () => {
             <Container>
                 <Typography>
                     How does a train eat? it choo choos!
+                    Hahaha!
                 </Typography>
             </Container>
         </Box>
