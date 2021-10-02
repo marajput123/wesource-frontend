@@ -2,28 +2,22 @@
   "name": "wesource-frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@mui/icons-material": "^5.0.1",
-    "@mui/material": "^5.0.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "latest",
+    "fuse.js": "^6.4.6",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "latest"
   },
   "browserslist": {
     "production": [

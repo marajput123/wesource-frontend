@@ -27,7 +27,6 @@
 ## Current Dependencies
 1. [Material UI](https://mui.com)
 2. [Material UI Icons](https://mui.com/components/icons/)
-3. 
 
 ## Available Scripts
 
