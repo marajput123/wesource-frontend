@@ -3,25 +3,28 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {Container} from '@mui/material'
 import LandingPage from './pages/LandingPage';
 import LogIn from './pages/login/LogIn';
-import SignUp from './pages/SignUp';
-import Footer from './components/Footer';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import { Box } from '@mui/system';
 
 function App() {
   return (
     <>
     <Router>
-    <NavBar/>
+      <NavBar/>
       <Switch>
-        {/* Landing Page */}
-        <Route exact path='/' component={LandingPage} />
-        {/* Login Page */}
-        <Route exact path='/login' component={LogIn} />
-        {/* Sign Up Page */}
-        <Route exact path='/signup' component={SignUp} />
+        <Box sx={{height:"100vh", display:"flex", minHeight:"700px", flexDirection:"column"}}>
+          <Container maxWidth="lg" sx={{flexGrow:1}}>
+              {/* Landing Page */}
+              <Route exact path='/' component={LandingPage} />
+              {/* Login Page */}
+              <Route exact path='/login' component={LogIn} />
+          </Container>
+          <Footer/>    
+        </Box>
       </Switch>
     </Router>
-    
+
     </>
 
   );
