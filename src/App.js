@@ -5,6 +5,7 @@ import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import SearchProducts from './pages/SearchProducts'
 
+
 function App() {
   return (
     <Router>
@@ -17,8 +18,6 @@ function App() {
         <Route  path='/signup' component={SignUp} />
         {/* Search Products Page */}
         <Route exact path='/search-products' component={SearchProducts} />
-
-
       </Switch>
     </Router>
   );
