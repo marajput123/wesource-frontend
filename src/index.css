@@ -8,3 +8,8 @@ html {
 * {
   box-sizing: border-box;
 }
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}

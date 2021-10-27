@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { Box } from '@mui/system';
 import SearchProducts from './pages/SearchProducts'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -32,5 +33,7 @@ function App() {
 
   );
 }
+
+
 
 export default App;
