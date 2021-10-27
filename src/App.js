@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
-import SearchProducts from './pages/SearchProducts'
+import SearchProducts from './pages/SearchProducts';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
