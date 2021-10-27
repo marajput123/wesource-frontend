@@ -6,37 +6,28 @@ import LogIn from './pages/login/LogIn';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { Box } from '@mui/system';
-import LogIn from './pages/LogIn';
-import SignUp from './pages/SignUp';
 import SearchProducts from './pages/SearchProducts'
 
 
 function App() {
   return (
     <>
-    <Router>
-      <NavBar/>
-      <Switch>
-        <Box sx={{height:"100vh", display:"flex", minHeight:"700px", flexDirection:"column"}}>
-          <Container maxWidth="lg" sx={{flexGrow:1}}>
-              {/* Landing Page */}
-              <Route exact path='/' component={LandingPage} />
-              {/* Login Page */}
-              <Route exact path='/login' component={LogIn} />
-          </Container>
-          <Footer/>    
-        </Box>
-        {/* Landing Page */}
-        <Route exact path='/' component={LandingPage} />
-        {/* Login Page */}
-        <Route  path='/login' component={LogIn} />
-        {/* Sign Up Page */}
-        <Route  path='/signup' component={SignUp} />
-        {/* Search Products Page */}
-        <Route exact path='/search-products' component={SearchProducts} />
-      </Switch>
-    </Router>
-
+      <Router>
+        <NavBar/>
+        <Switch>
+          <Box sx={{height:"100vh", display:"flex", minHeight:"700px", flexDirection:"column"}}>
+            <Container maxWidth="lg" sx={{flexGrow:1}}>
+                {/* Landing Page */}
+                <Route exact path='/' component={LandingPage} />
+                {/* Login Page */}
+                <Route exact path='/login' component={LogIn} />
+                {/* Search Products Page */}
+                <Route exact path='/search-products' component={SearchProducts} />
+            </Container>
+            <Footer/>    
+          </Box>
+        </Switch>
+      </Router>
     </>
 
   );

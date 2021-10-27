@@ -7,6 +7,11 @@ const SignUp = ({useRegister}) => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
+
+    const onRegisterClick = () => {
+        console.log("register click")
+    }
+
     return (
             <>
                 <Typography variant="h5" sx={{paddingBottom:"10px", fontWeight:200}}>Hello new user!</Typography>
@@ -15,7 +20,7 @@ const SignUp = ({useRegister}) => {
                 <TextField label="Last Name" variant="outlined" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                 <TextField label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 <TextField label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <PrimaryButton>Register</PrimaryButton>
+                <PrimaryButton onClick={onRegisterClick}>Register</PrimaryButton>
                 <PrimaryButton onClick={e => useRegister(false)} >Already a user?</PrimaryButton>
             </>
     )
