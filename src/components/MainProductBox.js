@@ -1,7 +1,13 @@
 import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
+import { useHistory } from 'react-router-dom';
 const MainProductBox = () => {
+  const history = useHistory();
+
+  const toProductDashboard = () => {
+    history.push('/');
+  };
   return (
     <>
       <Box
@@ -76,6 +82,7 @@ const MainProductBox = () => {
                 bgcolor: 'red',
               },
             }}
+            onClick={toProductDashboard}
           >
             Join Server
           </PrimaryButton>
