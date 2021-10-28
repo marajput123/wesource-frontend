@@ -1,5 +1,6 @@
 import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
+import { PrimaryButton } from './Buttons';
 const MainProductBox = () => {
   return (
     <>
@@ -62,7 +63,7 @@ const MainProductBox = () => {
             </Box>
           </Box>
           {/* Join Server Button */}
-          <Button
+          <PrimaryButton
             sx={{
               textAlign: 'center',
               bgcolor: 'indianred',
@@ -77,7 +78,7 @@ const MainProductBox = () => {
             }}
           >
             Join Server
-          </Button>
+          </PrimaryButton>
         </Box>
       </Box>
     </>

@@ -8,7 +8,6 @@ const notes = [{ id: '0' }, { id: '0' }, { id: '0' }];
 const SearchProducts = () => {
   return (
     <>
-      <Container sx={{ mt: '10rem' }} maxWidth="xl">
         <Container
           sx={{
             display: 'flex',
@@ -38,7 +37,6 @@ const SearchProducts = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
     </>
   );
 };

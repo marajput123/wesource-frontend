@@ -2,11 +2,13 @@ body,
 html {
   padding: 0px;
   margin: 0px;
+  min-width: 360px;
 }
 
 * {
   box-sizing: border-box;
 }
+
 .col-centered{
   float: none;
   margin: 0 auto;
