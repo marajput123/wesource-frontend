@@ -7,6 +7,8 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../static/W.svg';
 const ProductDashboard = () => {
+  const history = useHistory();
+
   const onGoToLandingPage = () => {
     history.push('/');
   };

@@ -15,16 +15,16 @@ function App() {
     <>
       <Router>
         <NavBar />
-        <Switch>
-          <Box
-            sx={{
-              height: '100vh',
-              display: 'flex',
-              minHeight: '700px',
-              flexDirection: 'column',
-            }}
-          >
-            <Container maxWidth="lg" sx={{ flexGrow: 1 }}>
+        <Box
+          sx={{
+            height: '100vh',
+            display: 'flex',
+            minHeight: '700px',
+            flexDirection: 'column',
+          }}
+        >
+          <Container maxWidth="lg" sx={{ flexGrow: 1 }}>
+            <Switch>
               {/* Landing Page */}
               <Route exact path="/" component={LandingPage} />
               {/* Login Page */}
@@ -37,10 +37,10 @@ function App() {
                 path="/:productDashboardID"
                 component={ProductDashboard}
               />
-            </Container>
-            <Footer />
-          </Box>
-        </Switch>
+            </Switch>
+          </Container>
+          <Footer />
+        </Box>
       </Router>
     </>
   );
