@@ -13,7 +13,8 @@ const SearchBar = () => {
                     width:"500px",
                     borderRadius:"20px",
                     display:"flex",
-                    alignItems:"center"
+                    alignItems:"center",
+                    flex:2
                 }}
                 elevation={10}
         >

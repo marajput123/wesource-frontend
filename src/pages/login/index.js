@@ -11,17 +11,21 @@ const LogIn = () => {
             sx={{
                 flex:1,
                 borderRadius:"0px",
-                margin:"10px 0px",
+                margin:"50px 0px 10px 0px",
                 maxHeight:"900px",
+                display:"flex",
+                flexDirection:"column",
+                alignItems:"center",
+                '& .MuiTextField-root ': { m: 1},
+                '& .MuiButton-root': { m: 1}
                 }}
             >
                 <Box sx={{
-                    paddingTop:"7rem",
                     display:"flex",
                     flexDirection:"column",
                     alignItems:"center",
-                    '& .MuiTextField-root ': { m: 1, maxWidth: '45ch', width:"90%" },
-                    '& .MuiButton-root': { m: 1, maxWidth: '45ch', width:"90%" },
+                    width:"100%",
+                    maxWidth:"340px"                    
                 }}>
             {!isRegister? <SignIn useRegister={useRegister}/>:<SignUp useRegister={useRegister}/>}
             </Box>
