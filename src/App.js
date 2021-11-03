@@ -34,7 +34,7 @@ function App() {
               {/* Product Dashboard */}
               <Route
                 exact
-                path="/:productDashboardID"
+                path="/dashboard/:productDashboardID"
                 component={ProductDashboard}
               />
             </Switch>

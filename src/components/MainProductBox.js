@@ -6,7 +6,7 @@ const MainProductBox = () => {
   const history = useHistory();
 
   const toProductDashboard = () => {
-    history.push('/');
+    history.push(`/dashboard/${'random-group-id-number'}`);
   };
   return (
     <>
