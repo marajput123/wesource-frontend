@@ -1,16 +1,37 @@
 import {  TextField, Typography } from '@mui/material'
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import { wesourceBackend } from '../../apis'
 import { PrimaryButton } from '../../components/Buttons'
+import { signInAction } from '../../store/actions/actionCreators'
 
 const SignUp = ({useRegister}) => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
 
-    const onRegisterClick = () => {
-        console.log("register click")
+    const goToLandingPage = () => {
+        history.push("/")
+    }
+
+    const onRegisterClick = async() => {
+        wesourceBackend.post("auth", {
+            firstName,
+            lastName,
+            username,
+            email,
+            password
+        }).then(res => {
+            dispatch(signInAction(res.data.jwt))
+            goToLandingPage()
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     return (
