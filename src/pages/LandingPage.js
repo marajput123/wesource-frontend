@@ -125,7 +125,7 @@ const LandingPage = () => {
 
                         {/* Description or something */}
                         <Container sx={{
-                            alignItems: "center",
+                            alignItems: "center"}}>
                             <Typography variant="h4" style={{
                             textAlign: "center"
                             }}>
