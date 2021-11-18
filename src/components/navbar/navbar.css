@@ -1,0 +1,20 @@
+.navbar-dropdown-info-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px
+}
+.navbar-dropdown-info{
+    overflow:hidden;
+    white-space:nowrap;
+
+}
+
+.navbar-dropdown-info p{
+    overflow:hidden;
+     text-overflow:ellipsis
+}
+
+.navbar-user-avatar{
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.custom-dropdown{
+    position: absolute;
+    top:60px;
+    width:200px;
+    right:20px
+}
+.custom-dropdown-invisible{
+    visibility: hidden;
+}
