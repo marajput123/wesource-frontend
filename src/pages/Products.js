@@ -3,7 +3,7 @@ import { Box, maxWidth, typography } from '@mui/system'
 import React, {useState} from 'react'
 import { PrimaryButton } from '../components/Buttons'
 
-const Products = ({useRegister}) => {
+const Products = ({productRegister}) => {
     const [product1, setproduct1] = useState("")
     const [product1Price, setproduct1Price] = useState("")
     const [product2, setproduct2] = useState("")
@@ -50,8 +50,7 @@ const Products = ({useRegister}) => {
                             <img style={{maxWidth:"100%", paddingTop:"30%"}}
                             src={
                                 'https://m.media-amazon.com/images/I/61VJWSztDcL._AC_SL1022_.jpg'
-                            }
-                            />
+                                } />
                         </Box>
                     </Container>
                 </Box>
