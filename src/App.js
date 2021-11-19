@@ -5,46 +5,25 @@ import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
 import Footer from './components/Footer';
 import { Box } from '@mui/system';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {Container, Paper} from '@mui/material'
+import SearchProducts from './pages/SearchProducts'
+import ProductDashboard from './pages/ProductDashboard'
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+
+
 
 function App() {
   return (
     <>
-      <Router>
-        <NavBar />
-        <Box
-          sx={{
-            height: '100vh',
-            display: 'flex',
-            minHeight: '700px',
-            flexDirection: 'column',
-          }}
-        >
-          <Container maxWidth="lg" sx={{ flexGrow: 1 }}>
-            <Switch>
-              {/* Landing Page */}
-              <Route exact path="/" component={LandingPage} />
-              {/* Login Page */}
-              <Route exact path="/login" component={LogIn} />
-              {/* Search Products Page */}
-              <Route exact path="/search-products" component={SearchProducts} />
-              {/* Product Dashboard */}
-              <Route
-                exact
-                path="/dashboard/:productDashboardID"
-                component={ProductDashboard}
-              />
-            </Switch>
-          </Container>
-          <Footer />
-        </Box>
-      </Router>
       <ThemeProvider theme={theme}>
         <Paper sx={{bgcolor:"background.default"}}>
           <Router>
             <NavBar/>
             <Switch>
-              <Box sx={{height:"100vh", display:"flex", minHeight:"700px", flexDirection:"column"}}>
-                <Container maxWidth="lg" sx={{flexGrow:1}}>
+              {/* <Box sx={{height:"100vh", display:"flex", minHeight:"900px", flexDirection:"column"}}>
+                <Container maxWidth="lg" sx={{flexGrow:1}}> */}
                     {/* Landing Page */}
                     <Route exact path='/' component={LandingPage} />
                     {/* Login Page */}
@@ -53,9 +32,14 @@ function App() {
                     <Route exact path='/search-products' component={SearchProducts} />
                     {/* Profile Page */}
                     <Route exact path='/profile' component={Profile} />
-                </Container>
+                    <Route
+                      exact
+                      path="/dashboard/:productDashboardID"
+                      component={ProductDashboard}
+                    />
+                {/* </Container>
                 <Footer/>    
-              </Box>
+              </Box> */}
             </Switch>
           </Router>
         </Paper>

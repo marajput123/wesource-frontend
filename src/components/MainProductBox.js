@@ -2,7 +2,8 @@ import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
 import { useHistory } from 'react-router-dom';
-const MainProductBox = () => {
+const MainProductBox = (props) => {
+  const {product} = props
   const history = useHistory();
 
   const toProductDashboard = () => {

@@ -1,5 +1,6 @@
-import {  TextField, Typography } from '@mui/material'
 import React, {useState} from 'react'
+import {  TextField, Typography, Box } from '@mui/material'
+import ErrorIcon from '@mui/icons-material/ErrorOutline';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { wesourceBackend } from '../../apis'
@@ -14,6 +15,7 @@ const SignUp = ({useRegister}) => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
+    const [error, setError] = useState("")
 
     const goToLandingPage = () => {
         history.push("/")
@@ -30,7 +32,7 @@ const SignUp = ({useRegister}) => {
             dispatch(signInAction(res.data.jwt))
             goToLandingPage()
         }).catch(err => {
-            console.log(err)
+            setError("Incorrect information provided, please make sure to fill all the credentials correctly.")
         })
     }
 
@@ -38,6 +40,9 @@ const SignUp = ({useRegister}) => {
             <>
                 <Typography variant="h5" sx={{paddingBottom:"10px", fontWeight:200}}>Hello new user!</Typography>
                 <Typography variant="h6" sx={{paddingBottom:"20px"}}>Register</Typography>
+                {error && 
+                <ErrorBox error={error}/>
+                }
                 <TextField 
                     helperText="Your first name."
                     fullWidth
@@ -74,12 +79,25 @@ const SignUp = ({useRegister}) => {
                     fullWidth
                     label="Password"
                     variant="filled"
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <PrimaryButton fullWidth onClick={onRegisterClick}>Register</PrimaryButton>
                 <PrimaryButton fullWidth  onClick={e => useRegister(false)} >Already a user?</PrimaryButton>
             </>
+    )
+}
+
+const ErrorBox = ({error}) => {
+    return (
+        <Box sx={{backgroundColor:"#fb5d5d4a", borderRadius:"5px", padding:"10px"}}>
+            <div style={{display:"flex",alignItems:"center"}}>
+                <ErrorIcon style={{marginRight:"5px"}}/>
+                <Typography style={{fontWeight:400}} variant="h6">Ooops</Typography>
+            </div>
+            <Typography variant="body2">{error}</Typography>
+        </Box>
     )
 }
 

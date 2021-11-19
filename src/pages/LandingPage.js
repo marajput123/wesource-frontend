@@ -5,6 +5,7 @@ import { Typography } from '@mui/material';
 import { PrimaryButton } from '../components/Buttons';
 import { useSelector } from 'react-redux';
 import {useHistory} from "react-router-dom"
+import { MainContainer } from '../components/MainContainer';
 
 const LandingPage = () => {
     const history = useHistory()
@@ -21,6 +22,7 @@ const LandingPage = () => {
 
     return (
         <>
+        <MainContainer>
            <Box 
             sx={{
                 flex:1,
@@ -54,6 +56,7 @@ const LandingPage = () => {
                     </Box>
                </Box>
            </Box>
+           </MainContainer>
         </>
         // <Box>
         //     <Container component="main">
