@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {Container, Paper} from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
 import ProductDashboard from './pages/ProductDashboard'
+import UserPage from './pages/UserPage'
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -37,8 +38,13 @@ function App() {
                       path="/dashboard/:productDashboardID"
                       component={ProductDashboard}
                     />
+                    <Route
+                      exact
+                      path="/users/:userID"
+                      component={UserPage}
+                    />
                 {/* </Container>
-                <Footer/>    
+                <Footer/>
               </Box> */}
             </Switch>
           </Router>

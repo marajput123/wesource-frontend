@@ -2,13 +2,11 @@ import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
 import { useHistory } from 'react-router-dom';
-const MainProductBox = (props) => {
+
+const MyGroups = (props) => {
   const {product} = props
   const history = useHistory();
 
-  const toProductDashboard = () => {
-    history.push(`/dashboard/${product.id}`);
-  };
   return (
     <>
       <Box
@@ -71,28 +69,10 @@ const MainProductBox = (props) => {
               <Typography variant="caption">{product.status}</Typography>
             </Box>
           </Box>
-          {/* Join Server Button */}
-          <PrimaryButton
-            sx={{
-              textAlign: 'center',
-              bgcolor: 'indianred',
-              color: 'white',
-              borderBottomLeftRadius: '1rem',
-              borderBottomRightRadius: '1rem',
-              mt: '.5rem',
-              width: '100%',
-              ':hover': {
-                bgcolor: 'red',
-              },
-            }}
-            onClick={toProductDashboard}
-          >
-            Join Server
-          </PrimaryButton>
         </Box>
       </Box>
     </>
   );
 };
 
-export default MainProductBox;
+export default MyGroups;
