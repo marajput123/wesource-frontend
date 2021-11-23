@@ -1,7 +1,14 @@
 import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
-const MainProductBox = () => {
+import { useHistory } from 'react-router-dom';
+const MainProductBox = (props) => {
+  const {product} = props
+  const history = useHistory();
+
+  const toProductDashboard = () => {
+    history.push(`/dashboard/${'random-group-id-number'}`);
+  };
   return (
     <>
       <Box
@@ -16,20 +23,22 @@ const MainProductBox = () => {
           <Box
             sx={{
               p: '1rem',
-              width: '60%',
               m: 'auto',
-              border: '1px green solid',
+              width:'200px',
               borderRadius: '1rem',
+              display:'flex',
+              justifyContent:'center',
+              height:"200px"
             }}
           >
             <img
               style={{ maxHeight: '100%', maxWidth: '100%' }}
-              src="https://st.cdjapan.co.jp/pictures/l/05/27/NEOGDS-435844.jpg?v=1"
+              src={product.imageUrl}
             />
           </Box>
           <Box sx={{ textAlign: 'center', mt: '1rem' }}>
-            <Typography variant="h5">Product Name</Typography>
-            <Typography>Owner Name</Typography>
+            <Typography variant="h5">{product.title}</Typography>
+            <Typography>{product.ownername}</Typography>
             <Typography variant="caption">Lorem 123</Typography>
           </Box>
         </Box>
@@ -48,7 +57,7 @@ const MainProductBox = () => {
               <Typography variant="caption">Date Created</Typography>
             </Box>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="body2">2</Typography>
+              <Typography variant="body2">{product.quantity}</Typography>
               <Typography variant="caption">Quantity</Typography>
             </Box>
             <Box
@@ -59,7 +68,7 @@ const MainProductBox = () => {
               }}
             >
               <CircleIcon sx={{ fontSize: '1rem', color: 'green' }} />
-              <Typography variant="caption">Status</Typography>
+              <Typography variant="caption">{product.status}</Typography>
             </Box>
           </Box>
           {/* Join Server Button */}
@@ -76,6 +85,7 @@ const MainProductBox = () => {
                 bgcolor: 'red',
               },
             }}
+            onClick={toProductDashboard}
           >
             Join Server
           </PrimaryButton>
