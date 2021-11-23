@@ -21,7 +21,6 @@ const LandingPage = () => {
     const goToSearchProductPage = () =>{
         history.push("/search-products")
     }
-    
     return (
         <>
             <Box>
