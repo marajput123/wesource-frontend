@@ -5,15 +5,21 @@ import { Typography } from '@mui/material';
 import { PrimaryButton } from '../components/Buttons';
 import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { PrimaryButton } from '../components/Buttons';
+import { useSelector } from 'react-redux';
+import { MainContainer } from '../components/MainContainer';
 
 const LandingPage = () => {
-    const onGoToSignUp = () => {
-        console.log("Go SignUp")
-        // history.push("/SignUp")
+    const history = useHistory()
+    const authState = useSelector(authState => {return authState.auth})
+    const {id} = authState
+
+    const goToLoginPage = () => {
+        history.push("/login")
     }
-    const onGoToProducts = () => {
-        console.log("Go Products")
-        // history.push("/Products")
+
+    const goToSearchProductPage = () =>{
+        history.push("/search-products")
     }
     
     return (
@@ -35,10 +41,15 @@ const LandingPage = () => {
                             How does a train eat? it choo choos! <br></br>
                             How does a train eat? it choo choos!
                         </Typography>
-                        <PrimaryButton onClick={onGoToSignUp} sx={{
-                            marginRight: "10px"
-                        }}>Sign Up</PrimaryButton>
-                        <PrimaryButton onClick={onGoToProducts}>Find Products</PrimaryButton>
+                        {
+                        !id && 
+                        <PrimaryButton onClick={goToLoginPage} sx={{margin:"0px 10px"}} fullWidth>
+                            Sign Up
+                        </PrimaryButton>
+                        }
+                        <PrimaryButton onClick={goToSearchProductPage} fullWidth>
+                            Search Products
+                        </PrimaryButton>
                     </Box>
 
                     {/*Product showcase*/}
@@ -93,10 +104,10 @@ const LandingPage = () => {
                                 }/>
                                 <img style={{maxWidth:"100%", paddingBottom:"10%"}} src={
                                 'https://m.media-amazon.com/images/I/81j8GYy9pNL._AC_SL1500_.jpg'
-                                } />
+                                }/>
                                 <img style={{maxWidth:"100%", paddingBottom:"10%"}} src={
                                 'https://cdn.shopify.com/s/files/1/0269/7976/2309/products/2_559d85a6-be97-4434-a497-14d1c20e6a3c.jpg?v=1587740177'
-                                } rounded/>
+                                }/>
                             </Container>
                         </Container>
                     </Box>
@@ -112,14 +123,14 @@ const LandingPage = () => {
                                 }/>
                                 <img style={{maxWidth:"100%", paddingBottom:"10%"}} src={
                                 'https://m.media-amazon.com/images/I/81j8GYy9pNL._AC_SL1500_.jpg'
-                                } />
+                                }/>
                                 <img style={{maxWidth:"100%", paddingBottom:"10%"}} src={
                                 'https://cdn.shopify.com/s/files/1/0269/7976/2309/products/2_559d85a6-be97-4434-a497-14d1c20e6a3c.jpg?v=1587740177'
-                                } rounded/>
+                                }/>
                             </Container>
                         </Container>
 
-                        {/* Empty container for middle part*/}
+                        {/*Empty container for middle part*/}
                         <Container sx={{display:"flex", justifyContent:"center"} }>
                         </Container>
 
@@ -161,9 +172,9 @@ const LandingPage = () => {
                         </Container>
                     </Box>
 
-                    <Container className="text-center">
-                        <PrimaryButton onClick={onGoToProducts}>Find Products</PrimaryButton>
-                    </Container>
+                    <PrimaryButton onClick={goToSearchProductPage} fullWidth>
+                            Search Products
+                    </PrimaryButton>
                 </Container>
             </Box>
         </>
