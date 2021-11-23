@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles';
 // A custom theme for this app
 const theme = createTheme({
   palette: {
-    type:"light",
+    type: 'light',
     primary: {
       main: '#e53935',
     },
