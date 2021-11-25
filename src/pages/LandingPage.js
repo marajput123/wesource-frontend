@@ -9,7 +9,7 @@ import { MainContainer } from '../components/MainContainer';
 
 const LandingPage = () => {
     const history = useHistory()
-    const authState = useSelector(authState => {return authState.auth})
+    const authState = useSelector(authState => {return authState.profile})
     const {id} = authState
 
     const goToLoginPage = () => {

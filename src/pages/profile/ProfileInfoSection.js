@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Typography } from '@mui/material'
-import { Box, TextField, Button } from "@mui/material"
+import { Box } from "@mui/material"
 import { PrimaryButton } from '../../components/Buttons'
 import { useDispatch, useSelector } from 'react-redux'
 import "./profilePage.css"
@@ -10,14 +10,16 @@ import ForumTextField  from '../../components/textFields/ForumTextFields'
 
 
 const ProfileInfoSection = () => {
-    const {uname, fname, lname, email, id, token} = useSelector(rootState => rootState.auth)
+    const profile = useSelector(rootState => rootState.profile)
+    const {id, jwtToken} = profile
     const dispatch = useDispatch()
 
-    const [firstName, setFirstName] = useState(fname || "")
-    const [lastName, setLastName] = useState(lname)
-    const [userEmail, setUserEmail] = useState(email)
-    const [username, setUsername] = useState(uname)
+    const [firstName, setFirstName] = useState(profile.firstName || "")
+    const [lastName, setLastName] = useState(profile.lastName)
+    const [email, setEmail] = useState(profile.email)
+    const [username, setUsername] = useState(profile.username)
     const [isValid, setIsValid] = useState(true)
+    const [updated,setUpdated] = useState(false)
 
 
     const onUpdate = () => {
@@ -27,24 +29,25 @@ const ProfileInfoSection = () => {
         wesourceBackend.put(
             `/auth/${id}`,
             {
-                firstName:firstName,
+                firstName,
                 lastName,
                 username,
-                email:userEmail
+                email
             },
-            {headers: { Authorization: `Bearer ${token}` }}
+            {headers: { Authorization: `Bearer ${jwtToken}` }}
         ).then(res => {
             if(res.status === 200){
                 dispatch(updateUser({
-                    fname:firstName,
-                    lname:lastName,
-                    uname:username,
-                    email:userEmail
-                }))
+                    firstName,
+                    lastName,
+                    username,
+                    email
+                }));
+                setUpdated("Success")
             }
         })
         .catch(err => {
-            console.log(err);
+            setUpdated("Failed")
         })
     }
 
@@ -58,6 +61,27 @@ const ProfileInfoSection = () => {
         <>
             <Typography variant={"h6"} style={{fontWeight:"400"}}>Update Information about yourself</Typography>
             <Box>
+                {
+                    updated &&
+                    <Box
+                        sx={{
+                            width:"100%",
+                            backgroundColor:(theme) => updated === "Success"
+                                ? theme.palette.success.light
+                                : theme.palette.error.light,
+                            marginBottom:"15px",
+                            padding:"0px 10px"
+                        }}
+                    >
+                        <Typography>
+                            {
+                                updated === "Success"
+                                ? "Profile information updated!"
+                                : "Profile information could not be updated."
+                            }
+                        </Typography>
+                    </Box>
+                }
                 <ForumTextField 
                     label="First Name" 
                     fullWidth variant="filled"
@@ -89,8 +113,8 @@ const ProfileInfoSection = () => {
                 <ForumTextField 
                     label="Email"
                     fullWidth variant="filled"
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     email
                     validation={setValidation}

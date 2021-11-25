@@ -1,17 +1,16 @@
 import { wesourceBackend } from "../../apis"
 
 export const signInAction = (jwtToken) => {
-    console.log(jwtToken)
+    const tokenData = JSON.parse(window.atob(jwtToken.split(".")[1]))
     return async (dispatch) => {
-        const tokenData = JSON.parse(window.atob(jwtToken.split(".")[1]))
-        const id = tokenData.id
-        wesourceBackend.get(`/auth/${id}`,
-            {
-                headers: { Authorization: `Bearer ${jwtToken}` }
-            }
-        ).then(res => {
+        try{
+            const id = tokenData.id
+            const res = await wesourceBackend.get(`/auth/${id}`,
+                {
+                    headers: { Authorization: `Bearer ${jwtToken}` }
+                }
+            )
             const user = res.data[0]
-            console.log(user)
             const userProfile = {
                 firstName:user.firstName,
                 lastName:user.lastName,
@@ -19,7 +18,6 @@ export const signInAction = (jwtToken) => {
                 rating:user.rating,
                 username:user.username
             }
-            console.log(`action creator - ${jwtToken}`);
             return dispatch({
                 type:"SIGN_IN",
                 payload:{
@@ -28,9 +26,9 @@ export const signInAction = (jwtToken) => {
                     user:userProfile
                 }
             })
-        }).catch(err => {
+        }catch(err){
             console.log(err)
-        })
+        }
     }
 }
 

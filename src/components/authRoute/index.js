@@ -3,10 +3,10 @@ import {Route, Redirect} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
 export const PrivateRouter = ({children, ...rest}) => {
-    const {token} = useSelector(state => state.auth)
+    const loggedIn = useSelector(state => state.auth)
 
     let isAuthenticated = false
-    if(token){
+    if(loggedIn){
         isAuthenticated = true
     }
 
@@ -23,10 +23,10 @@ export const PrivateRouter = ({children, ...rest}) => {
 }
 
 export const UnprotectedRoute = ({children, ...rest}) => {
-    const {token} = useSelector(state => state.auth)
+    const loggedIn = useSelector(state => state.auth)
 
     let isAuthenticated = false
-    if(token){
+    if(loggedIn){
         isAuthenticated = true
     }
     return (

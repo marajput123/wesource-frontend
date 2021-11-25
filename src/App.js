@@ -7,43 +7,47 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Paper } from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
 import ProductDashboard from './pages/ProductDashboard'
-import theme from './theme';
-import { ThemeProvider } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {PrivateRouter, UnprotectedRoute} from './components/authRoute';
-import { signInAction } from './store/actions/actionCreators';
+import { signInAction, signOutAction } from './store/actions/actionCreators';
+import { AUTH_REDUCER_INITIAL_STATE } from './store/reducers/authReducer';
+import Loading from './components/Loading';
 
 
 
 function App() {
   const dispatch = useDispatch();
+  const authState = useSelector(state => state.auth)
   const [loader, setLoader] = useState(true);
 
   const dispatchAuth = useCallback( async () => {
     const wesourceToken = window.localStorage.getItem('wesource-token');
-    if(wesourceToken || wesourceToken !== undefined){
-      console.log("dispatch");
+    if(wesourceToken){
       dispatch(signInAction(wesourceToken));
+    }else{
+      dispatch(signOutAction())
     }
-    console.log("dispatchAuth");
-    setLoader(false);
   }, []);
-  
+
   useEffect(() => {
       dispatchAuth();
   }, [dispatchAuth]);
+
+  useEffect(() => {
+    if(authState !== AUTH_REDUCER_INITIAL_STATE){
+      setLoader(false)
+    }
+  },[authState])
   
   if(loader){
     return(
-      <div>
-        <p>loading</p>
-      </div>
+      <Loading/>
     );
   }
 
   return (
     <>
-      <ThemeProvider theme={theme}>
         <Paper sx={{bgcolor:"background.default"}}>
           <Router>
             <NavBar/>
@@ -73,7 +77,6 @@ function App() {
             </Switch>
           </Router>
         </Paper>
-      </ThemeProvider>
     </>
   );
 }
