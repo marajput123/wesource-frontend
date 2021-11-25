@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Box from '@mui/material/Box';
 import { useHistory } from 'react-router';
 import { useDispatch} from 'react-redux';
@@ -6,6 +6,7 @@ import Dropdown from "../dropdown/Dropdown"
 import { Avatar, MenuItem, Divider, Typography, ListItemText, ListItemIcon } from '@mui/material';
 import { LogoutRounded, PersonRounded } from '@mui/icons-material';
 import { signOutAction } from '../../store/actions/actionCreators';
+import { wesourceBackend } from '../../apis';
 
 const MenuListItemData = [
     {
@@ -15,7 +16,7 @@ const MenuListItemData = [
     },
   ]
 
-const ProfileButton = ({firstName, lastName, email}) => {
+const ProfileButton = ({firstName, lastName, email, id}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const anchorRef = useRef(null);
@@ -38,9 +39,10 @@ const ProfileButton = ({firstName, lastName, email}) => {
         history.push("/login")
     }
     
-    const goToPath = (path) => [
-        history.push(path)
-    ]
+    const goToPath = (path) => {
+        setOpen(false)
+        history.push(path);
+    }
 
     return (
         <>

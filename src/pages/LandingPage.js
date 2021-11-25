@@ -27,7 +27,7 @@ const LandingPage = () => {
             sx={{
                 flex:1,
                 height:"80vh",
-                maxHeight:900,
+                minHeight:900,
                 justifyContent:"center",
                 alignItems:"center",
                 display:"flex"

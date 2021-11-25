@@ -6,6 +6,8 @@ import { useHistory } from 'react-router'
 import { wesourceBackend } from '../../apis'
 import { PrimaryButton } from '../../components/Buttons'
 import { signInAction } from '../../store/actions/actionCreators'
+import ForumTextField from '../../components/textFields/ForumTextFields';
+import { capatalize } from '../../util/helpers';
 
 const SignUp = ({useRegister}) => {
     const dispatch = useDispatch()
@@ -43,38 +45,46 @@ const SignUp = ({useRegister}) => {
                 {error && 
                 <ErrorBox error={error}/>
                 }
-                <TextField 
+                <ForumTextField
                     helperText="Your first name."
                     fullWidth
                     label="First Name"
                     variant="filled"
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) => setFirstName(capatalize(e.target.value))}
+                    required
                 />
-                <TextField 
+                <ForumTextField
                     helperText="Your last name."
                     fullWidth
                     label="Last Name"
                     variant="filled"
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) => setLastName(capatalize(e.target.value))}
+                    required
                 />
-                <TextField
+                <ForumTextField
                     helperText="A name that defines who you are!"
                     fullWidth
                     label="Username"
                     variant="filled"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
+                    minLength={4}
+                    maxLength={25}
                 />
-                <TextField
+                <ForumTextField
                     helperText="We will not share your email with anyone!"
                     fullWidth
                     label="Email"
                     variant="filled"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    email
                 />
-                <TextField
+                <ForumTextField
                     helperText="Do not share password with anyone!"
                     fullWidth
                     label="Password"
@@ -82,6 +92,8 @@ const SignUp = ({useRegister}) => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
+                    alphanumeric
                 />
                 <PrimaryButton fullWidth onClick={onRegisterClick}>Register</PrimaryButton>
                 <PrimaryButton fullWidth  onClick={e => useRegister(false)} >Already a user?</PrimaryButton>

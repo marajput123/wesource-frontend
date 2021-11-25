@@ -5,7 +5,6 @@ const Footer = () => {
         <Box
             component="footer"
             sx={{
-                marginTop:"10px",
                 display: 'flex',
                 bottom: 0,
                 left: 0,
