@@ -55,10 +55,6 @@ const Products = ({productRegister}) => {
                     </Container>
                 </Box>
             </Container>
-
-                
-            
-            
         </>    
     )
 }
