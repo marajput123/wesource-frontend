@@ -24,6 +24,10 @@ export default function NavBar() {
   const onGoToLandingPage = () => {
     history.push("/")
   }
+
+  const GoToProducts=()=>{
+    history.push("/Products")
+  }
   return (
     <Container style={{maxWidth:"1500px"}}>
             <Toolbar sx={{flex:1, display:"flex", justifyContent:"space-around", alignItems:"center"}}>
@@ -33,7 +37,7 @@ export default function NavBar() {
                 <SearchBar/>
                 <Box sx={{width:"150px", display:"flex", justifyContent:"space-evenly", position:'relative', flex:1}}>
                   {/* <PrimaryButton variant="contained">Create Group</PrimaryButton> */}
-                  {id? <PrimaryButton variant="contained">Create Group</PrimaryButton> : null}
+                  {id? <PrimaryButton variant="contained">Create Group</PrimaryButton> : <GroupButton onClick={GoToProducts}/>}
                   {id? <ProfileButton firstName={fname} lastName={lname} email={email}/> : <LoginButton onClick={onGoToLoginPage}/>}
                   {/* <ProfileButton firstName={"donald"} lastName={"duck"} email={"ducksssssy@gmail.com"}/> */}
                 </Box>
@@ -46,6 +50,14 @@ const LoginButton = (props) => {
   return (
     <>
       <PrimaryButton onClick={props.onClick} color="inherit">Login</PrimaryButton>
+    </>
+  )
+}
+
+const GroupButton = (props) =>{
+  return(
+    <>
+      <PrimaryButton onClick={props.onClick} color="inherit">Create Group</PrimaryButton>
     </>
   )
 }
