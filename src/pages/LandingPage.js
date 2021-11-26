@@ -5,7 +5,6 @@ import { Typography } from '@mui/material';
 import { PrimaryButton } from '../components/Buttons';
 import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { PrimaryButton } from '../components/Buttons';
 import { useSelector } from 'react-redux';
 import { MainContainer } from '../components/MainContainer';
 
@@ -40,15 +39,18 @@ const LandingPage = () => {
                             How does a train eat? it choo choos! <br></br>
                             How does a train eat? it choo choos!
                         </Typography>
-                        {
-                        !id && 
-                        <PrimaryButton onClick={goToLoginPage} sx={{margin:"0px 10px"}} fullWidth>
-                            Sign Up
-                        </PrimaryButton>
-                        }
-                        <PrimaryButton onClick={goToSearchProductPage} fullWidth>
-                            Search Products
-                        </PrimaryButton>
+                        <Container sx={{textAlign:"Center"}}>
+                            {
+                            !id && 
+                            <PrimaryButton onClick={goToLoginPage} sx={{margin:"0px 10px"}}>
+                                Sign Up
+                            </PrimaryButton>
+                            }
+                            <PrimaryButton onClick={goToSearchProductPage}>
+                                Search Products
+                            </PrimaryButton>
+                        </Container>
+                        
                     </Box>
 
                     {/*Product showcase*/}
@@ -171,9 +173,11 @@ const LandingPage = () => {
                         </Container>
                     </Box>
 
-                    <PrimaryButton onClick={goToSearchProductPage} fullWidth>
-                            Search Products
-                    </PrimaryButton>
+                    <Container sx={{textAlign:"Center"}}>
+                        <PrimaryButton onClick={goToSearchProductPage}>
+                                Search Products
+                        </PrimaryButton>
+                    </Container>
                 </Container>
             </Box>
         </>
