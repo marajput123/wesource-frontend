@@ -100,16 +100,4 @@ const ErrorBox = ({error}) => {
     )
 }
 
-const ErrorBox = ({error}) => {
-    return (
-        <Box sx={{backgroundColor:"#fb5d5d4a", borderRadius:"5px", padding:"10px"}}>
-            <div style={{display:"flex",alignItems:"center"}}>
-                <ErrorIcon style={{marginRight:"5px"}}/>
-                <Typography style={{fontWeight:400}} variant="h6">Ooops</Typography>
-            </div>
-            <Typography variant="body2">{error}</Typography>
-        </Box>
-    )
-}
-
 export default SignUp
