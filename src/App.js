@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import LogIn from './pages/login';
 import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
+import Products from './pages/Products';
 import Footer from './components/Footer';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -37,6 +38,8 @@ function App() {
                       path="/dashboard/:productDashboardID"
                       component={ProductDashboard}
                     />
+                    {/* Products Page */}
+                    <Route exact path='/products' component={Products} />
                 {/* </Container>
                 <Footer/>    
               </Box> */}
