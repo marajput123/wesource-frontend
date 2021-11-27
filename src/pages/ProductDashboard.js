@@ -6,12 +6,39 @@ import { Container, Box, Avatar, Typography } from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../static/W.svg';
+import { wesourceBackend } from '../apis'
+import UserAvatar from '../components/UserAvatar';
+
 const ProductDashboard = () => {
   const history = useHistory();
+  const {productDashboardID} = useParams()
 
   const onGoToLandingPage = () => {
     history.push('/');
   };
+
+  const DATA1 = [
+    {
+      id: '0',
+      title: "Cut co. Utensil box",
+      price: 638,
+      quantity:1,
+      ownername:"get_bopped90",
+      status:"Delivered",
+      imageUrl:"https://www.vhv.rs/dpng/d/405-4054687_knife-sets-png-free-image-download-pioneer-woman.png",
+      description: 'This is an Item Set #1',
+      date: '10/10/21'
+     }
+  ];
+
+
+  // useEffect(()=>{
+  //   wesourceBackend.get(`group/${productDashboardID}`).then(res => {
+  //     setAllProducts(res.data);
+  //   }).catch(err => {
+  //     console.log("No Products Available")
+  // })
+  // },[])
 
   const [announcements, setAnnouncements] = useState(true);
   const [lockIn, setLockIn] = useState(true);
@@ -36,16 +63,10 @@ const ProductDashboard = () => {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <PrimaryButton sx={{ height: '3rem' }}>
-              <ArrowBackIcon sx={{ fontSize: '3rem' }} />
-            </PrimaryButton>
-            {/* Logo */}
             <Box>
-              <img
-                onClick={onGoToLandingPage}
-                src={Logo}
-                style={{ width: '75px', cursor: 'pointer' }}
-              />
+              <Typography variant='h5'>
+              {DATA1[0].ownername}'s Group!
+              </Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -55,7 +76,7 @@ const ProductDashboard = () => {
               {!lockIn && <LockIcon />}
             </PrimaryButton>
           </Box>
-          <Avatar />
+          <Typography>Status: {DATA1[0].status}</Typography>
         </Container>
 
         {/* Middle */}
@@ -82,7 +103,7 @@ const ProductDashboard = () => {
               >
                 <img
                   src={
-                    'https://m.media-amazon.com/images/I/61VJWSztDcL._AC_SL1022_.jpg'
+                    `${DATA1[0].imageUrl}`
                   }
                   style={{ height: '100%', width: '100%' }}
                 />
@@ -95,13 +116,13 @@ const ProductDashboard = () => {
                 }}
               >
                 <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
-                  oeiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident,
+                  {DATA1[0].date}
+                </Typography>
+                <Typography>
+                  {DATA1[0].description}
+                </Typography>
+                <Typography>
+                  $ {DATA1[0].price}
                 </Typography>
               </Box>
               <Box
@@ -229,20 +250,18 @@ const ProductDashboard = () => {
               Organizer
             </Typography>
             {/* User Component */}
-            <Box sx={{ display: 'flex', alignItems: 'center', py: '1rem' }}>
-              <Avatar />
-              <Typography sx={{ ml: '1rem' }}>Billy</Typography>
-            </Box>
+            <UserAvatar id='1001' name='Billy Bob ' />
 
             <Typography variant="body1" color="brown">
               Users
             </Typography>
 
             {/* User Component */}
-            <Box sx={{ display: 'flex', alignItems: 'center', py: '1rem' }}>
-              <Avatar />
-              <Typography sx={{ ml: '1rem' }}>Bob</Typography>
-            </Box>
+            <UserAvatar id='1002' name='Bob Bill' />
+            <UserAvatar id='1003' name='Bob Bill' />
+            <UserAvatar id='1004' name='Bob Bill' />
+            <UserAvatar id='1005' name='Bob Bill' />
+
           </Box>
         </Box>
       </Box>

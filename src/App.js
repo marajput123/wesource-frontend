@@ -3,13 +3,14 @@ import LandingPage from './pages/LandingPage';
 import LogIn from './pages/login';
 import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
-import Products from './pages/Products';
+import CreateGroup from './pages/CreateGroup';
 import Footer from './components/Footer';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {Container, Paper} from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
 import ProductDashboard from './pages/ProductDashboard'
+import UserPage from './pages/UserPage'
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -38,10 +39,15 @@ function App() {
                       path="/dashboard/:productDashboardID"
                       component={ProductDashboard}
                     />
+                    <Route
+                      exact
+                      path="/users/:userID"
+                      component={UserPage}
+                    />
                     {/* Products Page */}
-                    <Route exact path='/products' component={Products} />
+                    <Route exact path='/create-group' component={CreateGroup} />
                 {/* </Container>
-                <Footer/>    
+                <Footer/>
               </Box> */}
             </Switch>
           </Router>

@@ -3,14 +3,14 @@ import { Box, maxWidth, typography } from '@mui/system'
 import React, {useState} from 'react'
 import { PrimaryButton } from '../components/Buttons'
 
-const Products = ({productRegister}) => {
+const CreateGroup = ({productRegister}) => {
     const [product1, setproduct1] = useState("")
     const [product1Price, setproduct1Price] = useState("")
     const [product2, setproduct2] = useState("")
     const [product2Price, setproduct2Price] = useState("")
     const [supplierURL, setsupplierURL] = useState("")
     const [maxSize, setmaxSize] = useState("")
-    const [groupDesc, setgroupDesc] = useState("") 
+    const [groupDesc, setgroupDesc] = useState("")
 
     const onCreateClick = () => {
         console.log("Product submitted")
@@ -55,8 +55,8 @@ const Products = ({productRegister}) => {
                     </Container>
                 </Box>
             </Container>
-        </>    
+        </>
     )
 }
 
-export default Products
+export default CreateGroup
