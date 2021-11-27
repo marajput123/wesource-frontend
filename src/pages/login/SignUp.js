@@ -88,7 +88,6 @@ const SignUp = ({useRegister}) => {
             </>
     )
 }
-
 const ErrorBox = ({error}) => {
     return (
         <Box sx={{backgroundColor:"#fb5d5d4a", borderRadius:"5px", padding:"10px"}}>
