@@ -4,3 +4,13 @@ export const capatalize = (str) => {
     }
     return str
 }
+
+export const formatQuery = (query) => {
+    const queryString = ""
+    if(query != null){
+        Object.keys(query).map(queryKey => {
+            queryString += `${queryKey}=${query[queryKey]}`
+        })
+    }
+    return queryString
+}

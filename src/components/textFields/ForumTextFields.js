@@ -19,7 +19,7 @@ const ForumTextField = (props) => {
             validations.push(`Length must be less than ${maxLength}`)
         } if(email && !emailValidation(value)){
             validations.push('Must be a valid email')
-        } if(alphanumeric && alphanumericValidation(value)){
+        } if(alphanumeric && !alphanumericValidation(value)){
             validations.push('Must be Alphanumeric')
         } if(required && value.length === 0){
             validations.push("The field is required")
@@ -30,7 +30,6 @@ const ForumTextField = (props) => {
         if(props.validation){
             props.validation(validations.length === 0)
         }
-        console.log(validations)
     }
 
     const onTextFieldClick = () => {

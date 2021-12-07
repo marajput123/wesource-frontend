@@ -11,7 +11,7 @@ import { Paper } from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
 import ProductDashboard from './pages/ProductDashboard'
 
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {PrivateRouter, UnprotectedRoute} from './components/authRoute';
 import { signInAction, signOutAction } from './store/actions/actionCreators';
 import { AUTH_REDUCER_INITIAL_STATE } from './store/reducers/authReducer';
@@ -22,7 +22,10 @@ import UserPage from './pages/UserPage'
 
 function App() {
   const dispatch = useDispatch();
-  const authState = useSelector(state => state.auth)
+  const {errorState, authState} = useSelector(state =>  ({
+    errorState: state.error,
+    authState: state.auth
+  }))
   const [loader, setLoader] = useState(true);
 
   const dispatchAuth = useCallback( async () => {
@@ -49,6 +52,9 @@ function App() {
       <Loading/>
     );
   }
+  if(errorState){
+    return <p>Error</p>
+  }
 
   return (
     <>
@@ -56,34 +62,29 @@ function App() {
           <Router>
             <NavBar/>
             <Switch>
-              {/* <Box sx={{height:"100vh", display:"flex", minHeight:"900px", flexDirection:"column"}}>
-                <Container maxWidth="lg" sx={{flexGrow:1}}> */}
-                    {/* Landing Page */}
-                    <Route exact path='/' component={LandingPage} />
-                    {/* Login Page */}
-                    <UnprotectedRoute exact path='/login'>
-                      <LogIn/>
-                    </UnprotectedRoute> 
-                    {/* Search Products Page */}
-                    <Route exact path='/search-products' component={SearchProducts} />
-                    {/* Profile Page */}
-                    <PrivateRouter exact path='/profile'>
-                      <Profile/>
-                    </PrivateRouter>
-                    {/* Product Dashboard */}
-                    <PrivateRouter exact path="/dashboard/:productDashboardID">
-                      <ProductDashboard/>
-                    </PrivateRouter>
-                    <Route
-                      exact
-                      path="/users/:userID"
-                      component={UserPage}
-                    />
-                    {/* Products Page */}
-                    <Route exact path='/create-group' component={CreateGroup} />
-                {/* </Container>
-                <Footer/>
-              </Box> */}
+              {/* Landing Page */}
+              <Route exact path='/' component={LandingPage} />
+              {/* Login Page */}
+              <UnprotectedRoute exact path='/login'>
+                <LogIn/>
+              </UnprotectedRoute> 
+              {/* Search Products Page */}
+              <Route exact path='/search-products' component={SearchProducts} />
+              {/* Profile Page */}
+              <PrivateRouter exact path='/profile'>
+                <Profile/>
+              </PrivateRouter>
+              {/* Product Dashboard */}
+              <PrivateRouter exact path="/dashboard/:productDashboardID">
+                <ProductDashboard/>
+              </PrivateRouter>
+              <Route
+                exact
+                path="/users/:userID"
+                component={UserPage}
+              />
+              {/* Products Page */}
+              <Route exact path='/create-group' component={CreateGroup} />
             </Switch>
           </Router>
         </Paper>

@@ -5,6 +5,7 @@ export const signInAction = (jwtToken) => {
     return async (dispatch) => {
         try{
             const id = tokenData.id
+            console.log(id)
             const res = await wesourceBackend.get(`/auth/${id}`,
                 {
                     headers: { Authorization: `Bearer ${jwtToken}` }
@@ -27,7 +28,9 @@ export const signInAction = (jwtToken) => {
                 }
             })
         }catch(err){
-            console.log(err)
+            return {
+                type:"SERVER_ERROR"
+            }
         }
     }
 }
