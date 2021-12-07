@@ -27,6 +27,7 @@ const SignIn = ({useRegister}) => {
             dispatch(signInAction(res.data.jwt))
             goToLandingPage()
         }).catch(err => {
+            console.log(err)
             if(err.response){
                 setError(err.response.data.message)
             }

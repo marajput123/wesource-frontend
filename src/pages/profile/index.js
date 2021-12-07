@@ -1,14 +1,14 @@
 import React from 'react'
 import { Avatar, Typography } from '@mui/material'
-import { Box, TextField } from "@mui/material"
+import { Box} from "@mui/material"
 import { PrimaryButton } from '../../components/Buttons'
-import { useSelector } from 'react-redux'
-import "./profilePage.css"
-import { fontWeight } from '@mui/system'
+import { MainContainer } from '../../components/MainContainer'
+import ProfileInfoSection from './ProfileInfoSection'
 
 const index = () => {
     return (
         <>
+        <MainContainer>
         <Box sx={{display:"flex", padding:"20px 0px", flexDirection:"column"}}>
             <Box sx={{display:"flex"}}>
                 <Box style={{flex:5, display:"flex", justifyContent:"center"}}>
@@ -30,28 +30,11 @@ const index = () => {
                 </Box>
             </Box>
         </Box>  
+        </MainContainer>
         </>
     )
 }
 
-const ProfileInfoSection = () => {
-    const {uname, fname, lname, email} = useSelector(rootState => rootState.auth)
-    return (
-        <>
-            <Typography variant={"h6"} style={{fontWeight:"400"}}>Update Information about yourself</Typography>
-            <Box>
-                <TextField variant="filled" fullWidth label="First Name" defaultValue={fname}/>
-                <TextField variant="filled" fullWidth label="Last Name" defaultValue={lname}/>
-                <TextField variant="filled" fullWidth label="Username" defaultValue={uname} />
-                <TextField variant="filled" fullWidth label="Email" defaultValue={email}/>
-                <div>
-                    <PrimaryButton fullWidth>Update</PrimaryButton>
-                </div>
-            </Box>
-        </>
-    )
-
-}
 
 const ProfileUpdateSection = () => {
     return (

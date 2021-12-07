@@ -2,10 +2,15 @@ import { ArrowDropDown, ArrowDropUp, Search } from '@mui/icons-material';
 import { IconButton, InputBase, Paper } from '@mui/material';
 import React, {useState} from 'react'
 import { FilterButton } from './Buttons';
+import {getAllProducts} from "../server"
 
 const SearchBar = () => {
     const [openFilter, setOpenFilter] = useState(false)
     const [searchInput, setSearchInput] = useState("")
+
+    const onSearch = async () => {
+        console.log(await getAllProducts())
+    }
     return (
         <>
             <Paper 
@@ -17,7 +22,7 @@ const SearchBar = () => {
                     flex:2
                 }}
                 elevation={10}
-        >
+            >
                 <InputBase
                     sx={{
                     padding:"7px 15px",
@@ -27,7 +32,7 @@ const SearchBar = () => {
                     value={searchInput}
                     onChange={e => setSearchInput(e.target.value)}
                 />
-                <IconButton>
+                <IconButton onClick={onSearch}>
                     <Search color="primary"/>
                 </IconButton>
                 <FilterButton onClick={() => setOpenFilter(!openFilter)}>

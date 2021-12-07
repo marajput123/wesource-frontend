@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/system';
 
-export const PrimaryButton = styled(Button)(({ theme }) => ({
-  background: ' linear-gradient(to right, #ff416c, #ff4b2b)',
+export const PrimaryButton = styled(Button)((props) => ({
+  background: `${props.disabled? "grey":"linear-gradient(to right, #ff416c, #ff4b2b)"}`,
   color: 'white',
 }));
 
