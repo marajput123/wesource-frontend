@@ -3,6 +3,9 @@ import LandingPage from './pages/LandingPage';
 import LogIn from './pages/login';
 import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
+import CreateGroup from './pages/CreateGroup';
+import Footer from './components/Footer';
+import { Box } from '@mui/system';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Paper } from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
@@ -13,6 +16,7 @@ import {PrivateRouter, UnprotectedRoute} from './components/authRoute';
 import { signInAction, signOutAction } from './store/actions/actionCreators';
 import { AUTH_REDUCER_INITIAL_STATE } from './store/reducers/authReducer';
 import Loading from './components/Loading';
+import UserPage from './pages/UserPage'
 
 
 
@@ -70,9 +74,15 @@ function App() {
                     <PrivateRouter exact path="/dashboard/:productDashboardID">
                       <ProductDashboard/>
                     </PrivateRouter>
-
+                    <Route
+                      exact
+                      path="/users/:userID"
+                      component={UserPage}
+                    />
+                    {/* Products Page */}
+                    <Route exact path='/create-group' component={CreateGroup} />
                 {/* </Container>
-                <Footer/>    
+                <Footer/>
               </Box> */}
             </Switch>
           </Router>

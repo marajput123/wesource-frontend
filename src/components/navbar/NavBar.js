@@ -23,6 +23,10 @@ export default function NavBar() {
   const onGoToLandingPage = () => {
     history.push("/")
   }
+
+  const GoToProducts=()=>{
+    history.push("/Products")
+  }
   return (
     <Container style={{maxWidth:"1500px"}}>
       <Toolbar sx={{flex:1, display:"flex", justifyContent:"space-around", alignItems:"center"}}>
@@ -43,6 +47,14 @@ const LoginButton = (props) => {
   return (
     <>
       <PrimaryButton onClick={props.onClick} color="inherit">Login</PrimaryButton>
+    </>
+  )
+}
+
+const GroupButton = (props) =>{
+  return(
+    <>
+      <PrimaryButton onClick={props.onClick} color="inherit">Create Group</PrimaryButton>
     </>
   )
 }
