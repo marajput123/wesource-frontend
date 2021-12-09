@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 import Box from '@mui/material/Box';
-=======
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import { Row, Card, Button, Col, Stack, Image } from 'react-bootstrap';
->>>>>>> development
 import { Typography } from '@mui/material';
 import { PrimaryButton } from '../components/Buttons';
 import { useSelector } from 'react-redux';
@@ -30,14 +24,9 @@ const LandingPage = () => {
            <Box 
             sx={{
                 flex:1,
-<<<<<<< HEAD
                 height:"100vh",
                 maxHeight:900,
                 minHeight:700,
-=======
-                height:"80vh",
-                minHeight:900,
->>>>>>> development
                 justifyContent:"center",
                 alignItems:"center",
                 display:"flex"
@@ -223,10 +212,6 @@ export default LandingPage
 
 // import Container from '@mui/material/Container';
 // import Box from '@mui/material/Box';
-<<<<<<< HEAD
-=======
-// import { Row, Card, Button, Col, Stack, Image } from 'react-bootstrap';
->>>>>>> development
 // import { Typography } from '@mui/material';
 // import { PrimaryButton } from '../components/Buttons';
 // import { React, useState } from 'react';

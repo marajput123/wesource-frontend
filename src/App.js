@@ -43,22 +43,13 @@ function App() {
       setLoader(false)
     }
   },[authState])
-  
-  if(loader){
-    return(
-      <Loading/>
-    );
-  }
-  if(errorState){
-    return <p>Error</p>
-  }
 
   return (
     <>
         <Paper sx={{bgcolor:"background.default"}}>
           <Router>
             <NavBar/>
-            <Switch>
+            <Switch>{}
               {/* Landing Page */}
               <Route exact path='/' component={LandingPage} />
               {/* Login Page */}
