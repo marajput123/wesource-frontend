@@ -4,18 +4,21 @@ import MainProductBox from '../components/MainProductBox';
 import { Box } from '@mui/system';
 import { MainContainer } from '../components/MainContainer';
 import { wesourceBackend } from '../apis'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import MyGroups from '../components/MyGroups';
 import Loading from '../components/Loading';
 import { getAllProducts, getMyProducts } from '../server';
+import { errorAction } from '../store/actions/actionCreators';
 
 
 
 const SearchProducts = () => {
+  const dispatch = useDispatch()
   const [currentTab, setCurrentTab] = useState("allProducts")
   const [products, setProducts] = useState([])
   const [myProducts, setMyProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error,setError] = useState(false)
 
   const {auth, searchQuery, profile} = useSelector(state=>({
     auth:state.auth,
@@ -25,12 +28,17 @@ const SearchProducts = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      const searchProducts = await getAllProducts(searchQuery)
-      setProducts(() => [...searchProducts.data])
-      if(auth){
-        const {product_ids} = (await getMyProducts(profile.id)).data
-        const myProducts = searchProducts.data.filter(product => product_ids.includes(product._id["$oid"]))
-        setMyProducts(() => [...myProducts])
+      try{
+        const searchProducts = await getAllProducts(searchQuery)
+        if(auth){
+          const {product_ids} = (await getMyProducts(profile.id)).data
+          const myProducts = searchProducts.data.filter(product => product_ids.includes(product._id["$oid"]))
+          setMyProducts(() => [...myProducts])
+        }
+        setProducts(() => [...searchProducts.data])
+        setError(false)
+      }catch(err){
+        setError(true)
       }
       setIsLoading(false)
     }
@@ -63,6 +71,10 @@ const SearchProducts = () => {
 
   if(isLoading){
     return <Loading/>
+  }
+
+  if(error){
+    return <Typography>Error</Typography>
   }
 
   return (

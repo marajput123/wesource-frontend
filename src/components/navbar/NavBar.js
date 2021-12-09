@@ -4,10 +4,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { PrimaryButton } from '../Buttons';
 import Logo from "../../static/W.svg"
-import SearchBar from '../searchBar';
 import { useHistory } from 'react-router';
 import {useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import SearchBar from "../searchBar/index"
 import "./navbar.css"
 
 
