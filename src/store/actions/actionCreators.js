@@ -1,11 +1,12 @@
 import { wesourceBackend } from "../../apis"
+import { getAllProducts } from "../../server"
+import { formatFilter } from "../../util/helpers"
 
 export const signInAction = (jwtToken) => {
     const tokenData = JSON.parse(window.atob(jwtToken.split(".")[1]))
     return async (dispatch) => {
         try{
             const id = tokenData.id
-            console.log(id)
             const res = await wesourceBackend.get(`/auth/${id}`,
                 {
                     headers: { Authorization: `Bearer ${jwtToken}` }
@@ -28,9 +29,7 @@ export const signInAction = (jwtToken) => {
                 }
             })
         }catch(err){
-            return {
-                type:"SERVER_ERROR"
-            }
+            return dispatch(errorAction())
         }
     }
 }
@@ -49,4 +48,19 @@ export const updateUser = (userProfile) => {
             userProfile
         }
     }
+}
+
+export const searchQueryAction = (query) => {
+    return ({
+        type:"SEARCH_QUERY",
+        payload:{
+            query:query
+        }
+    })
+}
+
+export const errorAction = () => {
+    return ({
+        type:"SERVER_ERROR"
+    })
 }
