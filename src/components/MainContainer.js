@@ -5,7 +5,7 @@ import Footer from './Footer'
 export const MainContainer = ({children}) => {
     return (
         <>
-         <Box sx={{height:"100vh", display:"flex", minHeight:"900px", flexDirection:"column"}}>
+         <Box sx={{display:"flex", minHeight:"100vh", flexDirection:"column"}}>
             <Container maxWidth="lg" sx={{flexGrow:1}}>
                 {children}
             </Container>

@@ -4,19 +4,16 @@ import LogIn from './pages/login';
 import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
 import CreateGroup from './pages/CreateGroup';
-import Footer from './components/Footer';
-import { Box } from '@mui/system';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Paper } from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
 import ProductDashboard from './pages/ProductDashboard'
-
 import { useDispatch, useSelector } from 'react-redux';
 import {PrivateRouter, UnprotectedRoute} from './components/authRoute';
 import { signInAction, signOutAction } from './store/actions/actionCreators';
 import { AUTH_REDUCER_INITIAL_STATE } from './store/reducers/authReducer';
 import Loading from './components/Loading';
-import UserPage from './pages/UserPage'
+import UserPage from './pages/UserPage';
 
 
 

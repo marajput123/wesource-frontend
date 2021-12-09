@@ -1,0 +1,26 @@
+.filter-root-paper{
+    position:absolute;
+    height:250px;
+    width:225px;
+    top:110%;
+    right:-10px;
+    z-index: 10;
+    border:1px solid;
+}
+
+.filter-container{
+    background-color:#000000b3;
+    padding:10px;
+    height:100%;
+    
+}
+
+.display-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.display-row{
+    display:flex;
+    align-items: center;
+}

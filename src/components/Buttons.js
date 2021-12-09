@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, ToggleButton } from '@mui/material';
 import { styled } from '@mui/system';
 
 export const PrimaryButton = styled(Button)((props) => ({
@@ -11,4 +11,10 @@ export const FilterButton = styled(Button)(({ theme }) => ({
   color: 'white',
   height: '46px',
   borderRadius: '0px 20px 20px 0px',
+}));
+
+
+export const PrimaryToggleButton = styled(ToggleButton)((props) => ({
+  background: `${props.disabled? "grey":"linear-gradient(to right, #ff416c, #ff4b2b)"}`,
+  color: 'white',
 }));
