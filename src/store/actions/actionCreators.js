@@ -1,11 +1,11 @@
 import { wesourceBackend } from "../../apis"
 
+
 export const signInAction = (jwtToken) => {
     const tokenData = JSON.parse(window.atob(jwtToken.split(".")[1]))
     return async (dispatch) => {
         try{
             const id = tokenData.id
-            console.log(id)
             const res = await wesourceBackend.get(`/auth/${id}`,
                 {
                     headers: { Authorization: `Bearer ${jwtToken}` }
