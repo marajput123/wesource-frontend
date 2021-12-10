@@ -20,7 +20,7 @@ export const getMyProducts = async (userId) => {
 }
 
 
-export const postProduct = async (product, jwtToken, onSuccess, onError) => {
+export const postProduct = async (product, jwtToken, onSuccess=null, onError=null) => {
     try{
         const result = await wesourceBackend.post(
             "product",
@@ -29,7 +29,42 @@ export const postProduct = async (product, jwtToken, onSuccess, onError) => {
             },
             {headers: { Authorization: `Bearer ${jwtToken}` }}
         )
-        onSuccess()
+        if(onSuccess){
+            onSuccess()
+        }
+        return result
+    }catch(err){
+        if(onError){
+            onError()
+        }
+    }
+}
+
+export const getGroup = async (groupId) => {
+    try{
+        const group = await wesourceBackend.get(
+            `group/${groupId}`
+        )
+    }catch(err){
+
+    }
+}
+
+export const addUserToGroup = async(groupId, userId, jwtToken, onSuccess=null, onError=null) => {
+    try{
+        const result = await wesourceBackend.post(
+            `group/${groupId}`,
+            {
+                user_id:userId
+            },
+            {headers: { Authorization: `Bearer ${jwtToken}` }}
+        )
+        if(result.status === 201){
+            if(onSuccess){
+                return onSuccess ()
+            }
+            return result
+        }
         return result
     }catch(err){
         onError()

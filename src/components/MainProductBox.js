@@ -4,12 +4,17 @@ import { PrimaryButton } from './Buttons';
 import { useHistory } from 'react-router-dom';
 import ImageNotFoundSVG from "../static/Astronaut-01.svg";
 import { isValidHttpUrl } from '../util/helpers';
+import { useSelector } from 'react-redux'
+import { addUserToGroup } from '../server';
 
 
-const IMAGE_URL = "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-
-const MainProductBox = ({product, ...props}) => {
+const MainProductBox = ({product, onErrorJoin,joined, ...props}) => {
   const history = useHistory();
+  const {id, jwtToken, auth} = useSelector(currentState => ({
+    id:currentState.profile.id,
+    jwtToken:currentState.profile.jwtToken,
+    auth:currentState.auth
+  }))
   
   const {
     Organizer,
@@ -20,11 +25,28 @@ const MainProductBox = ({product, ...props}) => {
     status,
     title,
     _id,
-    imageURL
+    imageURL,
+    Group
   } = product
-  const toProductDashboard = () => {
-    history.push(`/dashboard/${_id["$oid"]}`);
+
+  const goToGroupDashboard = () => {
+    const group_id = Group["$oid"]
+    history.push(`/dashboard/${group_id}`);
+  }
+
+  const onError = () => {
+    onErrorJoin(true)
+  }
+  
+  const onJoinGroup = async() => {
+    if(!auth){
+      goToGroupDashboard()
+    }
+    onError()
+    const group_id = Group["$oid"]
+    await addUserToGroup(group_id, id, jwtToken, goToGroupDashboard, onError)
   };
+
   const convertDate = (unformattedDate) => {
     const timeInSeconds = unformattedDate["$date"]
     const date = new Date(timeInSeconds).toISOString().split("T")[0]
@@ -38,7 +60,7 @@ const MainProductBox = ({product, ...props}) => {
           boxShadow: '5px 5px 20px rgb(0 0 0 / 60%)',
           borderRadius: '1rem',
           width: '20rem',
-          height:"400px",
+          height:"410px",
           display:"flex",
           flexDirection:"column"
         }}
@@ -103,6 +125,7 @@ const MainProductBox = ({product, ...props}) => {
           {/* Join Server Button */}
           <PrimaryButton
             sx={{
+              backgroundColor:"white",
               textAlign: 'center',
               color: 'white',
               borderBottomLeftRadius: '1rem',
@@ -110,9 +133,9 @@ const MainProductBox = ({product, ...props}) => {
               mt: '.5rem',
               width: '100%',
             }}
-            onClick={toProductDashboard}
+            onClick={joined? goToGroupDashboard:onJoinGroup}
           >
-            Join Server
+            {joined? "Already Joined":"Join"}
           </PrimaryButton>
         </Box>
       </Box>

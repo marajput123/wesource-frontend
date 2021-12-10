@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Container, Grid, Tab, Tabs, Typography } from '@mui/material';
+import { Container, Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
 import MainProductBox from '../components/MainProductBox';
 import { Box } from '@mui/system';
 import { MainContainer } from '../components/MainContainer';
@@ -9,6 +9,7 @@ import MyGroups from '../components/MyGroups';
 import Loading from '../components/Loading';
 import { getAllProducts, getMyProducts } from '../server';
 import { errorAction } from '../store/actions/actionCreators';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -18,6 +19,7 @@ const SearchProducts = () => {
   const [products, setProducts] = useState([])
   const [myProducts, setMyProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [onErrorJoin, setErrorJoin] = useState(false) 
   const [error,setError] = useState(false)
 
   const {auth, searchQuery, profile} = useSelector(state=>({
@@ -29,12 +31,14 @@ const SearchProducts = () => {
     const getProducts = async () => {
       try{
         const searchProducts = await getAllProducts(searchQuery)
+        let notJoinedProducts = searchProducts.data
         if(auth && profile.id){
           const {product_ids} = (await getMyProducts(profile.id)).data
           const myProducts = searchProducts.data.filter(product => product_ids.includes(product._id["$oid"]))
+          notJoinedProducts = searchProducts.data.filter(product => !product_ids.includes(product._id["$oid"]))
           setMyProducts(() => [...myProducts])
         }
-        setProducts(() => [...searchProducts.data])
+        setProducts(() => [...notJoinedProducts])
         setError(false)
       }catch(err){
         setError(true)
@@ -42,7 +46,7 @@ const SearchProducts = () => {
       setIsLoading(false)
     }
     getProducts()
-  }, [searchQuery])
+  }, [searchQuery, auth])
 
   const onChangeTab = (tab) => {
     setCurrentTab(tab)
@@ -51,7 +55,7 @@ const SearchProducts = () => {
   const renderAllProducts = () => {
     return products.map((product) => (
       <Grid item key={product._id["$oid"]}>
-        <MainProductBox product={product} />
+        <MainProductBox onErrorJoin={setErrorJoin} product={product} />
       </Grid>
     ))
   }
@@ -62,7 +66,7 @@ const SearchProducts = () => {
     }
     return myProducts.map((product) => (
       <Grid item key={product._id["$oid"]}>
-        <MainProductBox product={product} />
+        <MainProductBox joined product={product} />
       </Grid>
     ))
 
@@ -104,6 +108,15 @@ const SearchProducts = () => {
               <Tab style={{flex:1}} value="myProducts" label="My Groups" disabled={auth !== true? true:false} />
             </Tabs>
           </Box>
+          {
+            onErrorJoin &&
+            <Box sx={{bgcolor:(theme) => theme.palette.error.light, padding:"5px 10px", display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+              <Typography color="white" variant="h6">Could not join group. Please try agian later.</Typography>
+              <IconButton onClick={() => setErrorJoin(false)}>
+                <CloseIcon/>
+              </IconButton>
+            </Box>
+          }
           <Grid sx={{margin:0,width:"100%"}} container spacing={4} justifyContent="center">
             {currentTab === "allProducts" ? renderAllProducts() : renderMyProducts() }
           </Grid>

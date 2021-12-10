@@ -63,7 +63,7 @@ function App() {
                 <Profile/>
               </PrivateRouter>
               {/* Product Dashboard */}
-              <PrivateRouter exact path="/dashboard/:productDashboardID">
+              <PrivateRouter exact path="/dashboard/:groupId">
                 <ProductDashboard/>
               </PrivateRouter>
               <Route

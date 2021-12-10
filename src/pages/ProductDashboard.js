@@ -8,14 +8,20 @@ import LockIcon from '@mui/icons-material/Lock';
 import Logo from '../static/W.svg';
 import { wesourceBackend } from '../apis'
 import UserAvatar from '../components/UserAvatar';
+import { getGroup } from '../server';
 
 const ProductDashboard = () => {
   const history = useHistory();
-  const {productDashboardID} = useParams()
-
-  const onGoToLandingPage = () => {
-    history.push('/');
-  };
+  const {groupId} = useParams()
+  const [isLoading, setIsLoading] = useState("")
+  
+  useEffect(() => {
+    const getGroupInfo = async() => {
+      const group = await getGroup(groupId)
+      // console.log(group)
+    }
+    getGroupInfo()
+  },[])
 
   const DATA1 = [
     {
