@@ -2,6 +2,8 @@ import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
 import { useHistory } from 'react-router-dom';
+import ImageNotFoundSVG from "../static/Astronaut-01.svg";
+import { isValidHttpUrl } from '../util/helpers';
 
 
 const IMAGE_URL = "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
@@ -17,12 +19,12 @@ const MainProductBox = ({product, ...props}) => {
     quantity,
     status,
     title,
-    _id
+    _id,
+    imageURL
   } = product
   const toProductDashboard = () => {
     history.push(`/dashboard/${_id["$oid"]}`);
   };
-
   const convertDate = (unformattedDate) => {
     const timeInSeconds = unformattedDate["$date"]
     const date = new Date(timeInSeconds).toISOString().split("T")[0]
@@ -36,10 +38,13 @@ const MainProductBox = ({product, ...props}) => {
           boxShadow: '5px 5px 20px rgb(0 0 0 / 60%)',
           borderRadius: '1rem',
           width: '20rem',
+          height:"400px",
+          display:"flex",
+          flexDirection:"column"
         }}
       >
         {/* Top of Card */}
-        <Box sx={{ py: '1rem' }}>
+        <Box sx={{ py: '1rem', flex:1 }}>
           <Box
             sx={{
               p: '1rem',
@@ -51,15 +56,19 @@ const MainProductBox = ({product, ...props}) => {
               height:"200px"
             }}
           >
-            <img
-              style={{ maxHeight: '100%', maxWidth: '100%' }}
-              src={IMAGE_URL}
-            />
+            {isValidHttpUrl(imageURL)? <img src={imageURL}/> : <img src={ImageNotFoundSVG}/>}
           </Box>
-          <Box sx={{ textAlign: 'center', mt: '1rem' }}>
+          <Box sx={{ textAlign: 'center', mt: '1rem', padding:"0 10px" }}>
             <Typography variant="h5">{title}</Typography>
             <Typography>{Organizer}</Typography>
-            <Typography variant="caption">{description}</Typography>
+            <Box>
+              <Typography sx={{
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                display: "block"
+              }} variant="caption">{description}</Typography>
+            </Box>
           </Box>
         </Box>
         {/* Bottom of Card */}
@@ -95,15 +104,11 @@ const MainProductBox = ({product, ...props}) => {
           <PrimaryButton
             sx={{
               textAlign: 'center',
-              bgcolor: 'indianred',
               color: 'white',
               borderBottomLeftRadius: '1rem',
               borderBottomRightRadius: '1rem',
               mt: '.5rem',
               width: '100%',
-              ':hover': {
-                bgcolor: 'red',
-              },
             }}
             onClick={toProductDashboard}
           >

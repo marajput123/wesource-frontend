@@ -18,3 +18,20 @@ export const getMyProducts = async (userId) => {
     )
     return myProductIds
 }
+
+
+export const postProduct = async (product, jwtToken, onSuccess, onError) => {
+    try{
+        const result = await wesourceBackend.post(
+            "product",
+            {
+                ...product
+            },
+            {headers: { Authorization: `Bearer ${jwtToken}` }}
+        )
+        onSuccess()
+        return result
+    }catch(err){
+        onError()
+    }
+}

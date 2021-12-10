@@ -24,8 +24,8 @@ export default function NavBar() {
     history.push("/")
   }
 
-  const GoToProducts=()=>{
-    history.push("/Products")
+  const GoToCreateGroup=()=>{
+    history.push("/create-group")
   }
   return (
     <Container style={{maxWidth:"1500px"}}>
@@ -35,7 +35,7 @@ export default function NavBar() {
           </Box>
           <SearchBar/>
           <Box sx={{width:"150px", display:"flex", justifyContent:"space-evenly", position:'relative', flex:1}}>
-            {id? <PrimaryButton variant="contained">Create Group</PrimaryButton> : null}
+            {id? <PrimaryButton onClick={GoToCreateGroup} variant="contained">Create Group</PrimaryButton> : null}
             {id? <ProfileButton firstName={firstName} lastName={lastName} email={email} id={id}/> : <LoginButton onClick={onGoToLoginPage}/>}
           </Box>
       </Toolbar>

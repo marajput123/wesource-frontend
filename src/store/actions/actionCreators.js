@@ -17,7 +17,8 @@ export const signInAction = (jwtToken) => {
                 lastName:user.lastName,
                 email:user.email,
                 rating:user.rating,
-                username:user.username
+                username:user.username,
+                imageUrl:user.imageURL?user.imageURL:""
             }
             return dispatch({
                 type:"SIGN_IN",
@@ -40,7 +41,6 @@ export const signOutAction = () => {
 }
 
 export const updateUser = (userProfile) => {
-    console.log(userProfile)
     return {
         type:"UPDATE_USER",
         payload:{

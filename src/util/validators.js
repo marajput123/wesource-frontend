@@ -16,3 +16,17 @@ export const alphanumericValidation = (value) => {
     }
     return true;
 }
+
+export const integerValidation = (value) => {
+    if(!isNaN(value) && Number.isInteger(parseFloat(value))){
+        return true
+    }
+    return false
+}
+
+export const numericValidation = (value) => {
+    if(!isNaN(value)){
+        return true
+    }
+    return false
+}

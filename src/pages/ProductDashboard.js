@@ -36,7 +36,6 @@ const ProductDashboard = () => {
   //   wesourceBackend.get(`group/${productDashboardID}`).then(res => {
   //     setAllProducts(res.data);
   //   }).catch(err => {
-  //     console.log("No Products Available")
   // })
   // },[])
 

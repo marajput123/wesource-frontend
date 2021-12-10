@@ -25,12 +25,11 @@ const SearchProducts = () => {
     searchQuery:state.searchQuery,
     profile:state.profile
   }))
-
   useEffect(() => {
     const getProducts = async () => {
       try{
         const searchProducts = await getAllProducts(searchQuery)
-        if(auth){
+        if(auth && profile.id){
           const {product_ids} = (await getMyProducts(profile.id)).data
           const myProducts = searchProducts.data.filter(product => product_ids.includes(product._id["$oid"]))
           setMyProducts(() => [...myProducts])
