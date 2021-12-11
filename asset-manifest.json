@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wesource-frontend/static/css/main.38a408a2.chunk.css",
-    "main.js": "/wesource-frontend/static/js/main.20564b46.chunk.js",
-    "main.js.map": "/wesource-frontend/static/js/main.20564b46.chunk.js.map",
+    "main.js": "/wesource-frontend/static/js/main.79907218.chunk.js",
+    "main.js.map": "/wesource-frontend/static/js/main.79907218.chunk.js.map",
     "runtime-main.js": "/wesource-frontend/static/js/runtime-main.2da85ba3.js",
     "runtime-main.js.map": "/wesource-frontend/static/js/runtime-main.2da85ba3.js.map",
     "static/js/2.5db385a5.chunk.js": "/wesource-frontend/static/js/2.5db385a5.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.2da85ba3.js",
     "static/js/2.5db385a5.chunk.js",
     "static/css/main.38a408a2.chunk.css",
-    "static/js/main.20564b46.chunk.js"
+    "static/js/main.79907218.chunk.js"
   ]
 }
