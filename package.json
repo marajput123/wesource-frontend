@@ -11,9 +11,11 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@inovua/reactdatagrid-community": "^4.5.3",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.0.4",
+    "@mui/x-data-grid": "^5.2.0",
     "axios": "^0.24.0",
     "fuse.js": "^6.4.6",
     "history": "^5.1.0",

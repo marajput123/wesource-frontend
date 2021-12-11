@@ -1,3 +1,4 @@
+import { TrySharp } from "@mui/icons-material"
 import { wesourceBackend } from "../apis"
 import { formatQuery } from "../util/helpers"
 
@@ -45,6 +46,7 @@ export const getGroup = async (groupId) => {
         const group = await wesourceBackend.get(
             `group/${groupId}`
         )
+        return group.data
     }catch(err){
 
     }
@@ -69,4 +71,46 @@ export const addUserToGroup = async(groupId, userId, jwtToken, onSuccess=null, o
     }catch(err){
         onError()
     }
+}
+
+export const GETUser = async (userId, onSuccess=null, onError=null) => {
+    try{
+        const user = await wesourceBackend.get(`auth/${userId}`)
+    }catch(err){
+
+    }
+}
+
+export const POSTAnnouncement = async (groupdId, description, jwtToken) => {
+    try{
+        const announcement = await wesourceBackend.post(
+            `group/announcement/${groupdId}`,
+            {
+                description:description
+            },
+            {headers: { Authorization: `Bearer ${jwtToken}` }}
+        )
+        let convertedDate = new Date(announcement.data.date["$date"])
+        convertedDate = convertedDate.toDateString().split(" ").slice(1).join(" ")
+        return {...announcement.data, date:convertedDate}
+    }catch(err){
+        return "Could not post"
+    }
+}
+
+export const DELETEAnnouncement = async (groupId, announcementId, jwtToken) => {
+    try{
+        const announcement = await wesourceBackend.delete(
+            `group/announcement/${groupId}`,
+            {
+                headers: { Authorization: `Bearer ${jwtToken}` },
+                data: {
+                    announcementId:announcementId
+                },
+            }
+        )
+            return true
+        }catch(err){
+            return false
+        }
 }

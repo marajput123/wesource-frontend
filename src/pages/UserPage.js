@@ -10,19 +10,24 @@ import { wesourceBackend } from '../apis'
 import { MainContainer } from '../components/MainContainer';
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
 import Review from '../components/Review';
+import {GETUser} from "../server"
 
 const UserPage = () => {
   const history = useHistory();
   const {userID} = useParams()
+  const [isLoading, setIsLoading] = useState(true)
   const rating = 50
 
-//   useEffect(()=>{
-//     wesourceBackend.get(`group/${productDashboardID}`).then(res => {
-//       setAllProducts(res.data);
-//     }).catch(err => {
-//       setError("No Products Available")
-//   })
-//   },[])
+  useEffect(()=>{
+    const getUser = async() => {
+      const user = await GETUser(userID)
+    }
+    wesourceBackend.get(`group/${productDashboardID}`).then(res => {
+      setAllProducts(res.data);
+    }).catch(err => {
+      setError("No Products Available")
+  })
+  },[])
 
   return (
     <>
