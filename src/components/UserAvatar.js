@@ -1,5 +1,4 @@
-import { Box, Typography, Link, Avatar } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom'
+import { Box, Typography, Avatar } from '@mui/material';
 import {useHistory} from 'react-router-dom'
 
 const UserAvatar = (props) => {

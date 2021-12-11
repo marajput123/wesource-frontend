@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link as LinkRoute, useParams, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { PrimaryButton } from '../components/Buttons';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Container, Box, Avatar, Typography, Tabs, Tab, Grid, Paper, TextField, IconButton } from '@mui/material';
+import {Box, Typography, Tabs, Tab, Grid, Paper, TextField } from '@mui/material';
 import {useSelector} from "react-redux"
 import UserAvatar from '../components/UserAvatar';
-import { useTheme } from '@mui/material/styles';
 import { DELETEAnnouncement, getGroup, POSTAnnouncement } from '../server';
 import Loading from "../components/Loading"
 import { MainContainer } from '../components/MainContainer';
@@ -16,11 +14,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const ProductDashboard = () => {
   const profile = useSelector(currentState => currentState.profile)
-  const history = useHistory();
   const {groupId} = useParams()
-  const theme = useTheme();
   const [isLoading, setIsLoading] = useState(true)
-  const [announcements, setAnnouncements] = useState(true);
   const [groupInfo, setGroupInfo] = useState({})
   const [tabValue, setTabValue] = useState("announcement")
   
@@ -31,7 +26,6 @@ const ProductDashboard = () => {
   useEffect(() => {
     const getGroupInfo = async() => {
       const group = await getGroup(groupId)
-      console.log(group);
       setGroupInfo(group)
       onSuccess()
     }
@@ -61,7 +55,6 @@ const ProductDashboard = () => {
   }
   
   const isOwner = () => {
-    console.log(profile.id, groupInfo.Organizer._id["$oid"])
     return profile.id === groupInfo.Organizer._id["$oid"]
   }
 
@@ -219,7 +212,6 @@ const RenderAnnouncements = ({announcements, groupId, jwtToken,isOwner ,...props
     setDisable(false)
   }
 
-  console.log(isOwner);
   return (
     <Box sx={{height:"100%",display:"flex", flexDirection:"column"}}>
       <Box sx={{flex:1, overflow:"scroll", overflowX:"hidden", padding:"10px"}}>

@@ -73,11 +73,20 @@ export const addUserToGroup = async(groupId, userId, jwtToken, onSuccess=null, o
     }
 }
 
-export const GETUser = async (userId, onSuccess=null, onError=null) => {
+export const GETUser = async (userId, jwtToken ,onSuccess=null, onError=null) => {
     try{
-        const user = await wesourceBackend.get(`auth/${userId}`)
+        const user = await wesourceBackend.get(`auth/${userId}`, 
+            {headers: { Authorization: `Bearer ${jwtToken}` }}
+        )
+        if(onSuccess){
+            onSuccess(user.data)
+            return user.data
+        }
+        return user
     }catch(err){
-
+        if(onError){
+            onError()
+        }
     }
 }
 

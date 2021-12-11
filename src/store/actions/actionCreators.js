@@ -11,7 +11,7 @@ export const signInAction = (jwtToken) => {
                     headers: { Authorization: `Bearer ${jwtToken}` }
                 }
             )
-            const user = res.data[0]
+            const user = res.data
             const userProfile = {
                 firstName:user.firstName,
                 lastName:user.lastName,

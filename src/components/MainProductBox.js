@@ -39,12 +39,13 @@ const MainProductBox = ({product, onErrorJoin,joined, ...props}) => {
   }
   
   const onJoinGroup = async() => {
-    if(!auth){
+    if(!auth || auth==="CHECKING"){
       goToGroupDashboard()
+    }else{
+      onError()
+      const group_id = Group["$oid"]
+      await addUserToGroup(group_id, id, jwtToken, goToGroupDashboard, onError)
     }
-    onError()
-    const group_id = Group["$oid"]
-    await addUserToGroup(group_id, id, jwtToken, goToGroupDashboard, onError)
   };
 
   const convertDate = (unformattedDate) => {
