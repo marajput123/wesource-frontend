@@ -9,8 +9,7 @@ import { updateUser } from '../../store/actions/actionCreators'
 import ForumTextField  from '../../components/textFields/ForumTextFields'
 
 
-const ProfileInfoSection = () => {
-    const profile = useSelector(rootState => rootState.profile)
+const ProfileInfoSection = ({profile, ...props}) => {
     const {id, jwtToken} = profile
     const dispatch = useDispatch()
 

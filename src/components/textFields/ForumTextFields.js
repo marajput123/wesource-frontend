@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { Box, Paper, Popover, Popper, TextField, Typography } from "@mui/material"
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-import { alphanumericValidation, emailValidation } from '../../util/validators';
+import { alphanumericValidation, emailValidation, integerValidation, numericValidation } from '../../util/validators';
 
 const ForumTextField = (props) => {
     const {fullWidth, label, variant, helperText} = props
@@ -11,7 +11,7 @@ const ForumTextField = (props) => {
     const [value, setValue] = useState(props.value || "")
 
     const runValidation = (value) => {
-        const {minLength, maxLength, email, alphanumeric, required, capatalize} = props;
+        const {minLength, maxLength, email, alphanumeric, required, numericInteger, numeric} = props;
         let validations = []
         if(minLength && minLength > value.length && minLength > 0){
             validations.push(`Length must be greater than ${minLength}`)
@@ -21,7 +21,11 @@ const ForumTextField = (props) => {
             validations.push('Must be a valid email')
         } if(alphanumeric && !alphanumericValidation(value)){
             validations.push('Must be Alphanumeric')
-        } if(required && value.length === 0){
+        }if(numericInteger && !integerValidation(value)){
+            validations.push('Must be a whole number')
+        }if(numeric && !numericValidation(value)){
+            validations.push("Must a number")
+        }if(required && value.length === 0){
             validations.push("The field is required")
         } if(!required && value.length === 0){
             validations = []
@@ -47,8 +51,8 @@ const ForumTextField = (props) => {
 
     return (
         <Box sx={{
-            paddingBottom:`${errors.length === 0? "15px":"14px"}`,
-            width:"100%"
+            paddingBottom:`${errors.length === 0? "10px":"9px"}`,
+            width:"100%",
         }}>
             <TextField 
                 sx={{

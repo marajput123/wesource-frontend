@@ -3,7 +3,7 @@ import LandingPage from './pages/LandingPage';
 import LogIn from './pages/login';
 import Profile from './pages/profile';
 import NavBar from './components/navbar/NavBar';
-import CreateGroup from './pages/CreateGroup';
+import CreateGroup from './pages/createGroup/CreateGroup';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Paper } from '@mui/material'
 import SearchProducts from './pages/SearchProducts'
@@ -63,7 +63,7 @@ function App() {
                 <Profile/>
               </PrivateRouter>
               {/* Product Dashboard */}
-              <PrivateRouter exact path="/dashboard/:productDashboardID">
+              <PrivateRouter exact path="/dashboard/:groupId">
                 <ProductDashboard/>
               </PrivateRouter>
               <Route
@@ -72,7 +72,10 @@ function App() {
                 component={UserPage}
               />
               {/* Products Page */}
-              <Route exact path='/create-group' component={CreateGroup} />
+
+              <PrivateRouter exact path='/create-group'>
+                <CreateGroup/>
+              </PrivateRouter>
             </Switch>
           </Router>
         </Paper>

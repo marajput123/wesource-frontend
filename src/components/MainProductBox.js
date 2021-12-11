@@ -2,12 +2,19 @@ import { Typography, Box, Button } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import { PrimaryButton } from './Buttons';
 import { useHistory } from 'react-router-dom';
+import ImageNotFoundSVG from "../static/Astronaut-01.svg";
+import { isValidHttpUrl } from '../util/helpers';
+import { useSelector } from 'react-redux'
+import { addUserToGroup } from '../server';
 
 
-const IMAGE_URL = "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-
-const MainProductBox = ({product, ...props}) => {
+const MainProductBox = ({product, onErrorJoin,joined, ...props}) => {
   const history = useHistory();
+  const {id, jwtToken, auth} = useSelector(currentState => ({
+    id:currentState.profile.id,
+    jwtToken:currentState.profile.jwtToken,
+    auth:currentState.auth
+  }))
   
   const {
     Organizer,
@@ -17,10 +24,28 @@ const MainProductBox = ({product, ...props}) => {
     quantity,
     status,
     title,
-    _id
+    _id,
+    imageURL,
+    Group
   } = product
-  const toProductDashboard = () => {
-    history.push(`/dashboard/${_id["$oid"]}`);
+
+  const goToGroupDashboard = () => {
+    const group_id = Group["$oid"]
+    history.push(`/dashboard/${group_id}`);
+  }
+
+  const onError = () => {
+    onErrorJoin(true)
+  }
+  
+  const onJoinGroup = async() => {
+    if(!auth || auth==="CHECKING"){
+      goToGroupDashboard()
+    }else{
+      onError()
+      const group_id = Group["$oid"]
+      await addUserToGroup(group_id, id, jwtToken, goToGroupDashboard, onError)
+    }
   };
 
   const convertDate = (unformattedDate) => {
@@ -36,10 +61,13 @@ const MainProductBox = ({product, ...props}) => {
           boxShadow: '5px 5px 20px rgb(0 0 0 / 60%)',
           borderRadius: '1rem',
           width: '20rem',
+          height:"410px",
+          display:"flex",
+          flexDirection:"column"
         }}
       >
         {/* Top of Card */}
-        <Box sx={{ py: '1rem' }}>
+        <Box sx={{ py: '1rem', flex:1 }}>
           <Box
             sx={{
               p: '1rem',
@@ -51,15 +79,19 @@ const MainProductBox = ({product, ...props}) => {
               height:"200px"
             }}
           >
-            <img
-              style={{ maxHeight: '100%', maxWidth: '100%' }}
-              src={IMAGE_URL}
-            />
+            {isValidHttpUrl(imageURL)? <img src={imageURL}/> : <img src={ImageNotFoundSVG}/>}
           </Box>
-          <Box sx={{ textAlign: 'center', mt: '1rem' }}>
+          <Box sx={{ textAlign: 'center', mt: '1rem', padding:"0 10px" }}>
             <Typography variant="h5">{title}</Typography>
             <Typography>{Organizer}</Typography>
-            <Typography variant="caption">{description}</Typography>
+            <Box>
+              <Typography sx={{
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                display: "block"
+              }} variant="caption">{description}</Typography>
+            </Box>
           </Box>
         </Box>
         {/* Bottom of Card */}
@@ -94,20 +126,17 @@ const MainProductBox = ({product, ...props}) => {
           {/* Join Server Button */}
           <PrimaryButton
             sx={{
+              backgroundColor:"white",
               textAlign: 'center',
-              bgcolor: 'indianred',
               color: 'white',
               borderBottomLeftRadius: '1rem',
               borderBottomRightRadius: '1rem',
               mt: '.5rem',
               width: '100%',
-              ':hover': {
-                bgcolor: 'red',
-              },
             }}
-            onClick={toProductDashboard}
+            onClick={joined? goToGroupDashboard:onJoinGroup}
           >
-            Join Server
+            {joined? "Already Joined":"Join"}
           </PrimaryButton>
         </Box>
       </Box>

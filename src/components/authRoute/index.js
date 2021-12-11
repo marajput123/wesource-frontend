@@ -6,7 +6,7 @@ export const PrivateRouter = ({children, ...rest}) => {
     const loggedIn = useSelector(state => state.auth)
 
     let isAuthenticated = false
-    if(loggedIn){
+    if(loggedIn === true){
         isAuthenticated = true
     }
 

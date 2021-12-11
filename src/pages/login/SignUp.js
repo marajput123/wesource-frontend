@@ -53,6 +53,7 @@ const SignUp = ({useRegister}) => {
                     value={firstName}
                     onChange={(e) => setFirstName(capatalize(e.target.value))}
                     required
+                    maxLength={50}
                 />
                 <ForumTextField
                     helperText="Your last name."
@@ -62,6 +63,8 @@ const SignUp = ({useRegister}) => {
                     value={lastName}
                     onChange={(e) => setLastName(capatalize(e.target.value))}
                     required
+                    maxLength={50}
+
                 />
                 <ForumTextField
                     helperText="A name that defines who you are!"
@@ -71,8 +74,8 @@ const SignUp = ({useRegister}) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    minLength={4}
-                    maxLength={25}
+                    minLength={6}
+                    maxLength={30}
                 />
                 <ForumTextField
                     helperText="We will not share your email with anyone!"
@@ -83,6 +86,7 @@ const SignUp = ({useRegister}) => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     email
+                    maxLength={50}
                 />
                 <ForumTextField
                     helperText="Do not share password with anyone!"

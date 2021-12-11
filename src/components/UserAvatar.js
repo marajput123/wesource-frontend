@@ -1,16 +1,18 @@
-import { Box, Typography, Link, Avatar } from '@mui/material';
+import { Box, Typography, Avatar } from '@mui/material';
+import {useHistory} from 'react-router-dom'
 
-import { Link as RouterLink } from 'react-router-dom'
 const UserAvatar = (props) => {
+    const history = useHistory()
+    const onAvatarClick = () => {
+        history.push(`/users/${id}`)
+    }
     const {name, id} = props
     return (
         <>
-                <Link component={RouterLink} to={`/users/${id}`}>
-            <Box sx={{ display: 'flex', alignItems: 'center', py: '1rem' }}>
-                    <Avatar />
-                    <Typography sx={{ ml: '1rem' }}>{name}</Typography>
+            <Box onClick={onAvatarClick} sx={{ display: 'flex', alignItems: 'center', py: '1rem', cursor:"pointer"}}>
+                <Avatar />
+                <Typography sx={{ ml: '1rem' }}>{name}</Typography>
             </Box>
-                </Link>
         </>
     )
 }

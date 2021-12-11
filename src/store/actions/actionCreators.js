@@ -11,13 +11,14 @@ export const signInAction = (jwtToken) => {
                     headers: { Authorization: `Bearer ${jwtToken}` }
                 }
             )
-            const user = res.data[0]
+            const user = res.data
             const userProfile = {
                 firstName:user.firstName,
                 lastName:user.lastName,
                 email:user.email,
                 rating:user.rating,
-                username:user.username
+                username:user.username,
+                imageUrl:user.imageURL?user.imageURL:""
             }
             return dispatch({
                 type:"SIGN_IN",
@@ -40,7 +41,6 @@ export const signOutAction = () => {
 }
 
 export const updateUser = (userProfile) => {
-    console.log(userProfile)
     return {
         type:"UPDATE_USER",
         payload:{
